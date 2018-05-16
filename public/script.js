@@ -44,5 +44,10 @@ new Vue({
 				});
 			}
 		}
+	},
+	filters: {
+		formatCurrency: function(price) {
+			return '€'.concat(price.toFixed(2));
+		}
 	}
 })
