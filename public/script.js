@@ -17,8 +17,12 @@ new Vue({
 	},
 	methods: {
 		addItem: function(index) {
+			var item = this.items[index];
 			this.total += 9.99;
-			this.cart.push(this.items[index]);
+			this.cart.push({
+				title: item.title,
+				quantity: 1
+			});
 		}
 	}
 })
