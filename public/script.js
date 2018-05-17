@@ -43,6 +43,12 @@ new Vue({
 					price: item.price
 				});
 			}
+		},
+		incrementItem: function(item) {
+			console.log('increment item');
+		},
+		decrementItem: function(item) {
+			console.log('decrement item');
 		}
 	},
 	filters: {

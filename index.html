@@ -31,6 +31,8 @@
                 <li class="cart-item" v-for="item in cart">
                     <div class="item-title">{{ item.title }}</div>
                     <span class="item-qty">{{ item.price | formatCurrency }} x {{ item.quantity }}</span>
+                    <button class="btn" v-on:click="incrementItem(item)">+</button>
+                    <button class="btn" v-on:click="decrementItem(item)">-</button>
                 </li>
             </ul>
             <div v-if="cart.length">
