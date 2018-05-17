@@ -45,10 +45,19 @@ new Vue({
 			}
 		},
 		incrementItem: function(item) {
-			console.log('increment item');
+			item.quantity++;
+			this.total += item.price;
 		},
 		decrementItem: function(item) {
-			console.log('decrement item');
+			item.quantity--;
+			this.total -= item.price;
+			if(item.quantity <= 0) {
+				for(var i = 0; i < this.cart.length; i++) {
+					if(this.cart[i].id === item.id) {
+						this.cart.splice(i, 1);
+					}
+				}
+			}
 		}
 	},
 	filters: {
