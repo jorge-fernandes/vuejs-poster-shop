@@ -60,6 +60,9 @@ new Vue({
 					}
 				}
 			}
+		},
+		onSubmit: function() {
+			console.log('submit');
 		}
 	},
 	filters: {
