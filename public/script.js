@@ -63,7 +63,10 @@ new Vue({
 			}
 		},
 		onSubmit: function() {
-			console.log(axios);
+			axios.get('/search/'.concat(this.search))
+				.then(function(res) {
+					console.log(res);
+				})
 		}
 	},
 	filters: {
