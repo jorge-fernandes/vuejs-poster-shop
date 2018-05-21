@@ -63,7 +63,7 @@ new Vue({
 			}
 		},
 		onSubmit: function() {
-			console.log(this.search);
+			console.log(axios);
 		}
 	},
 	filters: {
