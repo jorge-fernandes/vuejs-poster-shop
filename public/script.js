@@ -2,23 +2,7 @@ new Vue({
 	el: '#app',
 	data: {
 		total: 0,
-		items: [
-			{
-				id: 1,
-				title: 'Item 1',
-				price: 0.99
-			},
-			{
-				id: 2,
-				title: 'Item 2',
-				price: 5.00
-			},
-			{
-				id: 3,
-				title: 'Item 3',
-				price: 14.50
-			}
-		],
+		items: [],
 		cart: [],
 		search: ''
 	},
@@ -63,9 +47,15 @@ new Vue({
 			}
 		},
 		onSubmit: function() {
+			var me = this;
 			axios.get('/search/'.concat(this.search))
 				.then(function(res) {
-					console.log(res);
+					var data = res.data;
+					//inject fake prices
+					data.forEach(function(item) {
+						item.price = Math.random() * 10;
+					});
+					me.items = data;
 				})
 		}
 	},
