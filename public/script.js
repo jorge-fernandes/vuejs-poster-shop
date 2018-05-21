@@ -19,7 +19,8 @@ new Vue({
 				price: 14.50
 			}
 		],
-		cart: []
+		cart: [],
+		search: ''
 	},
 	methods: {
 		addItem: function(index) {
@@ -62,7 +63,7 @@ new Vue({
 			}
 		},
 		onSubmit: function() {
-			console.log('submit');
+			console.log(this.search);
 		}
 	},
 	filters: {
