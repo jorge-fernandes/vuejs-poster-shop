@@ -4,7 +4,8 @@ new Vue({
 		total: 0,
 		items: [],
 		cart: [],
-		search: ''
+		newSearch: '',
+		lastSearch: ''
 	},
 	methods: {
 		addItem: function(index) {
@@ -48,7 +49,7 @@ new Vue({
 		},
 		onSubmit: function() {
 			var me = this;
-			axios.get('/search/'.concat(this.search))
+			axios.get('/search/'.concat(this.newSearch))
 				.then(function(res) {
 					var data = res.data;
 					//inject fake prices
@@ -56,6 +57,7 @@ new Vue({
 						item.price = Math.random() * 10;
 					});
 					me.items = data;
+					me.lastSearch = me.newSearch;
 				})
 		}
 	},
