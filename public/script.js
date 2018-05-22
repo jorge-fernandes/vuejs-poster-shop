@@ -77,4 +77,6 @@ new Vue({
 	mounted: function() {
 		this.onSubmit();
 	}
-})
+});
+
+console.log(scrollMonitor);
