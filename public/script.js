@@ -67,6 +67,9 @@ new Vue({
 					me.items = data.slice(0, LOAD_NUM);
 					me.lastSearch = me.newSearch;
 				})
+		},
+		appendItems: function() {
+			console.log('Append items');
 		}
 	},
 	filters: {
@@ -75,12 +78,13 @@ new Vue({
 		}
 	},
 	mounted: function() {
-		this.onSubmit();
+		var me = this;
+		var elem = document.getElementById('product-list-bottom');
+		var watcher = scrollMonitor.create(elem);
+		me.onSubmit();
+
+		watcher.enterViewport(function() {
+		 	me.appendItems();
+		});
 	}
 });
-
-var elem = document.getElementById('product-list-bottom');
-var watcher = scrollMonitor.create(elem);
-watcher.enterViewport(function() {
-	console.log('Entered viewport.');
-})
