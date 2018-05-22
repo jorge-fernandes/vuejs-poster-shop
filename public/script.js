@@ -4,7 +4,7 @@ new Vue({
 		total: 0,
 		items: [],
 		cart: [],
-		newSearch: '',
+		newSearch: 'craft beer',
 		lastSearch: '',
 		loading: false
 	},
@@ -69,5 +69,8 @@ new Vue({
 		formatCurrency: function(price) {
 			return '€'.concat(price.toFixed(2));
 		}
+	},
+	mounted: function() {
+		this.onSubmit();
 	}
 })
