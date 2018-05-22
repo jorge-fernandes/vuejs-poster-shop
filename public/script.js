@@ -1,3 +1,5 @@
+var LOAD_NUM = 10;
+
 new Vue({
 	el: '#app',
 	data: {
@@ -6,7 +8,8 @@ new Vue({
 		cart: [],
 		newSearch: 'craft beer',
 		lastSearch: '',
-		loading: false
+		loading: false,
+		results: []
 	},
 	methods: {
 		addItem: function(index) {
@@ -60,7 +63,8 @@ new Vue({
 						item.price = Math.random() * 10;
 					});
 					me.loading = false;
-					me.items = data;
+					me.results = data;
+					me.items = data.slice(0, LOAD_NUM);
 					me.lastSearch = me.newSearch;
 				})
 		}
