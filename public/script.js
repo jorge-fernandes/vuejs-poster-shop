@@ -79,4 +79,8 @@ new Vue({
 	}
 });
 
-console.log(scrollMonitor);
+var elem = document.getElementById('product-list-bottom');
+var watcher = scrollMonitor.create(elem);
+watcher.enterViewport(function() {
+	console.log('Entered viewport.');
+})
