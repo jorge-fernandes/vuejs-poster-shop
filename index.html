@@ -53,10 +53,12 @@
                     <button class="btn" v-on:click="decrementItem(item)">-</button>
                 </li>
             </ul>
-            <div v-if="cart.length">
-                <div>Total: {{ total | formatCurrency }}</div>
-            </div>
-            <div class="empty-cart" v-else>
+            <transition name="fade">
+                <div v-if="cart.length">
+                    <div>Total: {{ total | formatCurrency }}</div>
+                </div>
+            </transition>
+            <div class="empty-cart" v-if="cart.length === 0">
                 No items in the cart.
             </div>
         </div>
