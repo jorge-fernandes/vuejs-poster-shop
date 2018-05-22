@@ -69,7 +69,10 @@ new Vue({
 				})
 		},
 		appendItems: function() {
-			console.log('Append items');
+			if(this.items.length < this.results.length) {
+				var append = this.results.slice(this.items.length, this.items.length + LOAD_NUM);
+				this.items = this.items.concat(append);
+			}
 		}
 	},
 	filters: {
