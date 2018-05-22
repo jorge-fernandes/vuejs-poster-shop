@@ -5,7 +5,8 @@ new Vue({
 		items: [],
 		cart: [],
 		newSearch: '',
-		lastSearch: ''
+		lastSearch: '',
+		loading: false
 	},
 	methods: {
 		addItem: function(index) {
@@ -49,6 +50,8 @@ new Vue({
 		},
 		onSubmit: function() {
 			var me = this;
+			me.loading = true;
+			me.items = [];
 			axios.get('/search/'.concat(this.newSearch))
 				.then(function(res) {
 					var data = res.data;
@@ -56,6 +59,7 @@ new Vue({
 					data.forEach(function(item) {
 						item.price = Math.random() * 10;
 					});
+					me.loading = false;
 					me.items = data;
 					me.lastSearch = me.newSearch;
 				})
