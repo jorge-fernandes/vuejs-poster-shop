@@ -53,20 +53,25 @@ new Vue({
 		},
 		onSubmit: function() {
 			var me = this;
-			me.loading = true;
-			me.items = [];
-			axios.get('/search/'.concat(this.newSearch))
-				.then(function(res) {
-					var data = res.data;
-					//inject fake prices
-					data.forEach(function(item) {
-						item.price = Math.random() * 10;
+				if(me.newSearch.length) {
+				me.loading = true;
+				me.items = [];
+				axios.get('/search/'.concat(this.newSearch))
+					.then(function(res) {
+						var data = res.data;
+						//inject fake prices
+						data.forEach(function(item) {
+							item.price = Math.random() * 10;
+						});
+						me.loading = false;
+						me.results = data;
+						me.items = data.slice(0, LOAD_NUM);
+						me.lastSearch = me.newSearch;
 					});
-					me.loading = false;
-					me.results = data;
-					me.items = data.slice(0, LOAD_NUM);
-					me.lastSearch = me.newSearch;
-				})
+			} else {
+				me.newSearch = me.lastSearch;
+				alert('You can not search for an empty term.');
+			}
 		},
 		appendItems: function() {
 			if(this.items.length < this.results.length) {
